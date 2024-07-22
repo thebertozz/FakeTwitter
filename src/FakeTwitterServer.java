@@ -1,10 +1,10 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class ServerTest {
+public class FakeTwitterServer {
     public static void main(String[] args) {
         try {
-            ServerTestImplementation test = new ServerTestImplementation();
+            FakeTwitter test = new FakeTwitter();
 
             Registry registry = LocateRegistry.createRegistry(Constants.servicePort);
 
