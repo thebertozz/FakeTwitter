@@ -3,24 +3,26 @@ package model;
 import java.util.List;
 
 public class User {
-    String handle;
+    String userHandle;
     String userUuid;
     List<String> followers;
     List<String> following;
+    long createdAt;
 
-    public User(String handle, String userUuid, List<String> followers, List<String> following) {
-        this.handle = handle;
+    public User(String userHandle, String userUuid, List<String> followers, List<String> following, long createdAt) {
+        this.userHandle = userHandle;
         this.userUuid = userUuid;
         this.followers = followers;
         this.following = following;
+        this.createdAt = createdAt;
     }
 
-    public String getHandle() {
-        return handle;
+    public String getUserHandle() {
+        return userHandle;
     }
 
-    public void setHandle(String handle) {
-        this.handle = handle;
+    public void setUserHandle(String userHandle) {
+        this.userHandle = userHandle;
     }
 
     public String getUserUuid() {
@@ -45,5 +47,13 @@ public class User {
 
     public void setFollowing(List<String> following) {
         this.following = following;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 }

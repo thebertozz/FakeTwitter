@@ -5,20 +5,21 @@ import java.util.List;
 public class Post {
     String postUuid;
     String message;
-    String timestamp;
     String userHandle;
     List<Comment> commentList;
-    int likes;
+    int likesCount;
+
+    List<String> likedBy;
     long createdAt;
 
-    public Post(String postUuid, String message, String timestamp, String userHandle, List<Comment> commentList, int likes, long createdAt) {
+    public Post(String postUuid, String message, long createdAt, String userHandle, List<Comment> commentList, int likesCount, List<String> likedBy) {
         this.postUuid = postUuid;
         this.message = message;
-        this.timestamp = timestamp;
+        this.createdAt = createdAt;
         this.userHandle = userHandle;
         this.commentList = commentList;
-        this.likes = likes;
-        this.createdAt = createdAt;
+        this.likesCount = likesCount;
+        this.likedBy = likedBy;
     }
 
     public String getPostUuid() {
@@ -37,12 +38,12 @@ public class Post {
         this.message = message;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getUserHandle() {
@@ -61,19 +62,19 @@ public class Post {
         this.commentList = commentList;
     }
 
-    public int getLikes() {
-        return likes;
+    public int getLikesCount() {
+        return likesCount;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
     }
 
-    public long getCreatedAt() {
-        return createdAt;
+    public List<String> getLikedBy() {
+        return likedBy;
     }
 
-    public void setCreatedAt(long createdAt) {
-        this.createdAt = createdAt;
+    public void setLikedBy(List<String> likedBy) {
+        this.likedBy = likedBy;
     }
 }
