@@ -1,6 +1,8 @@
 package model;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     String commentUuid;
     String userHandle;
     String message;

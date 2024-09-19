@@ -37,20 +37,26 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
     //Registrazione utente
     @Override
-    public BooleanResponse registerUser(String handle) {
-        User newUser = new User.Builder()
-                .withUserHandle(handle)
-                .withUserUuid(UUID.randomUUID().toString())
-                .withCreatedAt(System.currentTimeMillis())
-                .withFollowers(new ArrayList<>())
-                .withFollowing(new ArrayList<>())
-                .build();
+    public BooleanResponse registerUser(String handle) throws RemoteException {
 
-        if (!users.stream().map(User::getUserUuid).toList().contains(newUser.getUserUuid())) {
-            users.add(newUser);
-            return new BooleanResponse(true, 0);
+        if (!handle.isBlank()) {
+
+            User newUser = new User.Builder()
+                    .withUserHandle(handle)
+                    .withUserUuid(UUID.randomUUID().toString())
+                    .withCreatedAt(System.currentTimeMillis())
+                    .withFollowers(new ArrayList<>())
+                    .withFollowing(new ArrayList<>())
+                    .build();
+
+            if (!users.stream().map(User::getUserUuid).toList().contains(newUser.getUserUuid())) {
+                users.add(newUser);
+                return new BooleanResponse(true, 0);
+            } else {
+                return new BooleanResponse(false, 0); //L'utente esiste già
+            }
         } else {
-            return new BooleanResponse(false, 0); //User already exists
+            return new BooleanResponse(false, 0); //Ricevuta stringa vuota
         }
     }
 
@@ -177,7 +183,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     }
 
     @Override
-    public BooleanResponse commentPost(String postUuid, String handle, String comment) {
+    public BooleanResponse commentPost(String postUuid, String handle, String comment) throws RemoteException {
 
         boolean updated = false;
 

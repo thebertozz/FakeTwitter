@@ -14,5 +14,5 @@ public interface FakeTwitterInterface extends Remote {
     BooleanResponse unFollowUser(String handle, String userUuid) throws RemoteException;
     PostsListResponse getLatestPosts(long since) throws RemoteException;
     PostsListResponse getFollowedPosts(long since, String handle) throws RemoteException;
-    BooleanResponse commentPost(String postUuid, String handle, String comment);
+    BooleanResponse commentPost(String postUuid, String handle, String comment) throws RemoteException;
 }

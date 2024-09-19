@@ -1,6 +1,8 @@
 package model.responses;
 
-abstract class ServiceResponse<T> {
+import java.io.Serializable;
+
+abstract class ServiceResponse<T> implements Serializable {
 
     private boolean success;
     private int errorCode;

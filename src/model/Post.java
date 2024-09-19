@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-public class Post {
+public class Post implements Serializable {
     String postUuid;
     String message;
     String userHandle;
