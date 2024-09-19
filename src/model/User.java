@@ -17,6 +17,8 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public User() {}
+
     public String getUserHandle() {
         return userHandle;
     }
@@ -55,5 +57,62 @@ public class User {
 
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void addFollower(String handle) {
+        followers.add(handle);
+    }
+
+    public void addFollowing(String handle) {
+        following.add(handle);
+    }
+
+    public void removeFollower(String handle) {
+        followers.removeIf(element -> element.equals(handle));
+    }
+
+    public void removeFollowing(String handle) {
+        following.removeIf(element -> element.equals(handle));
+    }
+
+    public static final class Builder {
+        private final User user;
+
+        public Builder() {
+            user = new User();
+        }
+
+        public static Builder anUser() {
+            return new Builder();
+        }
+
+        public Builder withUserHandle(String userHandle) {
+            user.setUserHandle(userHandle);
+            return this;
+        }
+
+        public Builder withUserUuid(String userUuid) {
+            user.setUserUuid(userUuid);
+            return this;
+        }
+
+        public Builder withFollowers(List<String> followers) {
+            user.setFollowers(followers);
+            return this;
+        }
+
+        public Builder withFollowing(List<String> following) {
+            user.setFollowing(following);
+            return this;
+        }
+
+        public Builder withCreatedAt(long createdAt) {
+            user.setCreatedAt(createdAt);
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
     }
 }
