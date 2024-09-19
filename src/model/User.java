@@ -59,16 +59,8 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public void addFollower(String handle) {
-        followers.add(handle);
-    }
-
     public void addFollowing(String handle) {
         following.add(handle);
-    }
-
-    public void removeFollower(String handle) {
-        followers.removeIf(element -> element.equals(handle));
     }
 
     public void removeFollowing(String handle) {

@@ -10,7 +10,7 @@ public class FakeTwitterServer {
 
             registry.bind(Constants.serviceRegistryName, test);
 
-            System.out.println("Server started!");
+            System.out.println("Il server è in esecuzione");
         } catch (Exception e) {
             e.printStackTrace();
         }

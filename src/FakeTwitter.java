@@ -155,7 +155,25 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         //TODO: mettere opzione per giorno, settimana, mese, tutto
 
-        return null;
+        ArrayList<Post> followedPosts = new ArrayList<>();
+
+        //Cerco gli utenti seguiti
+
+        User currentUser = users.stream().filter(element -> element.getUserHandle().equals(handle)).findFirst().orElse(null);
+
+        //Cerco i post scritti dagli utenti seguiti
+
+        if (currentUser != null) {
+
+			for (Post post : posts) {
+
+				if (post.getUserHandle().equals(handle)) {
+					followedPosts.add(post);
+				}
+			}
+        }
+
+        return new PostsListResponse(followedPosts, 0);
     }
 
     @Override
