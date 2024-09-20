@@ -49,7 +49,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                     .withFollowing(new ArrayList<>())
                     .build();
 
-            if (!users.stream().map(User::getUserUuid).toList().contains(newUser.getUserUuid())) {
+            if (!users.stream().map(User::getUserHandle).toList().contains(newUser.getUserHandle())) {
                 users.add(newUser);
                 return new BooleanResponse(true, 0);
             } else {
@@ -149,7 +149,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     }
 
     @Override
-    public PostsListResponse getLatestPosts(long since) throws RemoteException {
+    public PostsListResponse getLatestPosts() throws RemoteException {
 
         //TODO: mettere opzione per giorno, settimana, mese, tutto
 
@@ -157,7 +157,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     }
 
     @Override
-    public PostsListResponse getFollowedPosts(long since, String handle) throws RemoteException {
+    public PostsListResponse getFollowedPosts(String handle) throws RemoteException {
 
         //TODO: mettere opzione per giorno, settimana, mese, tutto
 
@@ -183,7 +183,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     }
 
     @Override
-    public BooleanResponse commentPost(String postUuid, String handle, String comment) throws RemoteException {
+    public BooleanResponse commentPost(String handle, String postUuid, String comment) throws RemoteException {
 
         boolean updated = false;
 
