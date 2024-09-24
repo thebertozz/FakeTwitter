@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8e7d71a-a8d9-4194-845d-4447abb5d5e2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FakeTwitterClient.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FakeTwitterServer.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mongodb_driver_sync.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FakeTwitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FakeTwitter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FakeTwitterClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FakeTwitterInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FakeTwitterInterface.java" afterDir="false" />
@@ -38,7 +33,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.FakeTwitterClient.executor": "Debug",
-    "Application.FakeTwitterServer.executor": "Debug",
+    "Application.FakeTwitterServer.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -52,9 +47,16 @@
       <recent name="model.responses" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.FakeTwitterClient">
     <configuration name="FakeTwitterClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FakeTwitterClient" />
+      <module name="FakeTwitter" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FakeTwitterServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FakeTwitterServer" />
       <module name="FakeTwitter" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -63,6 +65,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.FakeTwitterClient" />
+        <item itemvalue="Application.FakeTwitterServer" />
       </list>
     </recent_temporary>
   </component>
