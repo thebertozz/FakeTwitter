@@ -115,19 +115,26 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         boolean updated = false;
 
-        for (int i = 0; i < users.size(); i++) {
+        if (follower.equals(followed)) {
 
-            if (users.get(i).getUserHandle().equals(follower)) {
+            return new BooleanResponse(updated, 0);
 
-                User userToUpdate = users.get(i);
-                userToUpdate.addFollowing(followed);
-                users.set(i, userToUpdate);
+        } else {
 
-                updated = true;
+            for (int i = 0; i < users.size(); i++) {
+
+                if (users.get(i).getUserHandle().equals(follower)) {
+
+                    User userToUpdate = users.get(i);
+                    userToUpdate.addFollowing(followed);
+                    users.set(i, userToUpdate);
+
+                    updated = true;
+                }
             }
-        }
 
-        return new BooleanResponse(updated, 0);
+            return new BooleanResponse(updated, 0);
+        }
     }
 
     //Smettere di seguire un utente

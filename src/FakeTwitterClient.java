@@ -35,7 +35,7 @@ public class FakeTwitterClient {
 
         //Menu principale
 
-        System.out.println("--- Benvenuti in Fake Twitter! --- Registrati per utilizzare tutte le funzionalità");
+        System.out.println("--- Benvenuti in Fake Twitter! --- Registrati od effettua il login");
         System.out.println("1. Registrati");
         System.out.println("2. Effettua il login");
         //System.out.println("2. Mostra la lista di post recenti");
@@ -120,7 +120,7 @@ public class FakeTwitterClient {
 
     public static void showRegisteredUserMenu(String userHandle) {
 
-        System.out.println("--- Welcome, @" + userHandle +"!" + " Cosa vuoi fare oggi? ---");
+        System.out.println("--- Cosa vuoi fare oggi, " + "@" + userHandle + "? ---");
         System.out.println("1. Nuovo post");
         System.out.println("2. Mostra la lista di tutti i post");
         System.out.println("3. Mostra la lista dei post di chi segui");
@@ -203,7 +203,11 @@ public class FakeTwitterClient {
 
         if (posts.getData().isEmpty()) {
             System.out.println();
-            System.out.println("La lista dei post è ancora vuota. Aggiungi tu il primo!");
+            if (onlyFollowedUsers) {
+                System.out.println("La lista dei post è ancora vuota. Inizia a seguire qualche utente!");
+            } else {
+                System.out.println("La lista dei post è ancora vuota. Aggiungi tu il primo!");
+            }
             System.out.println();
 
             showRegisteredUserMenu(userHandle);
@@ -238,7 +242,7 @@ public class FakeTwitterClient {
 
                         BooleanResponse response = fakeTwitterInterface.commentPost(userHandle, posts.getData().get(numberForComment - 1).getPostUuid(), message);
 
-                        if (response.isSuccess()) {
+                        if (response.getData()) {
                             System.out.println("Commento aggiunto!");
                         } else {
                             System.out.println("Errore nel commentare il post");
@@ -264,7 +268,7 @@ public class FakeTwitterClient {
 
                         BooleanResponse response = fakeTwitterInterface.likePost(userHandle, posts.getData().get(numberForLike - 1).getPostUuid());
 
-                        if (response.isSuccess()) {
+                        if (response.getData()) {
                             System.out.println("Like aggiunto!");
                         } else {
                             System.out.println("Errore nel like del post");
@@ -289,10 +293,10 @@ public class FakeTwitterClient {
 
                         BooleanResponse response = fakeTwitterInterface.followUser(userHandle, posts.getData().get(numberForFollow - 1).getUserHandle());
 
-                        if (response.isSuccess()) {
+                        if (response.getData()) {
                             System.out.println("Follow aggiunto!");
                         } else {
-                            System.out.println("Errore nel follow dell'utente");
+                            System.out.println("Errore nel follow dell'utente. Ricorda che non puoi seguire te stesso!");
                         }
 
                         showPostsList(userHandle, onlyFollowedUsers);
@@ -314,7 +318,7 @@ public class FakeTwitterClient {
 
                         BooleanResponse response = fakeTwitterInterface.unFollowUser(userHandle, posts.getData().get(numberForUnFollow - 1).getUserHandle());
 
-                        if (response.isSuccess()) {
+                        if (response.getData()) {
                             System.out.println("Follow rimosso!");
                         } else {
                             System.out.println("Errore nella rimozione del follow dell'utente");
@@ -338,7 +342,7 @@ public class FakeTwitterClient {
 
                         BooleanResponse response = fakeTwitterInterface.deletePost(userHandle, posts.getData().get(numberForDeletion - 1).getPostUuid());
 
-                        if (response.isSuccess()) {
+                        if (response.getData()) {
                             System.out.println("Post rimosso!");
                         } else {
                             System.out.println("Errore nella rimozione del post, puoi eliminare solo i post pubblicati da te stesso.");
