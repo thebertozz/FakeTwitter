@@ -8,13 +8,13 @@ abstract class ServiceResponse<T> implements Serializable {
     private int errorCode;
     private String errorMessage;
     private T data;
-    private int elapsed;
+    private long elapsed;
 
     public ServiceResponse() {
     }
 
     //In caso di errore
-    public ServiceResponse(int errorCode, String errorMessage, int elapsed) {
+    public ServiceResponse(int errorCode, String errorMessage, long elapsed) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
         this.elapsed = elapsed;
@@ -23,7 +23,7 @@ abstract class ServiceResponse<T> implements Serializable {
     }
 
     //In caso di successo, data sarà popolato
-    public ServiceResponse(T data, int elapsed) {
+    public ServiceResponse(T data, long elapsed) {
         this.data = data;
         this.elapsed = elapsed;
         this.errorCode = 0;
@@ -65,11 +65,11 @@ abstract class ServiceResponse<T> implements Serializable {
         this.data = data;
     }
 
-    public int getElapsed() {
+    public long getElapsed() {
         return elapsed;
     }
 
-    public void setElapsed(int elapsed) {
+    public void setElapsed(long elapsed) {
         this.elapsed = elapsed;
     }
 }

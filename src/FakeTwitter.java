@@ -15,9 +15,6 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     private final ArrayList<Post> posts;
 
     protected FakeTwitter() throws RemoteException {
-
-        //TODO: load pre made elements for the home screen
-
         super();
         users = (ArrayList<User>) StorageUtils.loadStoredUsers();
         posts = (ArrayList<Post>) StorageUtils.loadStoredPosts();
@@ -25,12 +22,14 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
     //Registrazione utente
     @Override
-    public BooleanResponse registerUser(String handle) throws RemoteException {
+    public BooleanResponse registerUser(String userHandle) throws RemoteException {
 
-        if (!handle.isBlank()) {
+        long startTime = System.currentTimeMillis();
+
+        if (!userHandle.isBlank()) {
 
             User newUser = new User.Builder()
-                    .withUserHandle(handle)
+                    .withUserHandle(userHandle)
                     .withUserUuid(UUID.randomUUID().toString())
                     .withCreatedAt(System.currentTimeMillis())
                     .withFollowers(new ArrayList<>())
@@ -40,37 +39,43 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             if (!users.stream().map(User::getUserHandle).toList().contains(newUser.getUserHandle())) {
                 users.add(newUser);
                 StorageUtils.saveUsersToStorage(users);
-                return new BooleanResponse(true, 0);
+                return new BooleanResponse(true, System.currentTimeMillis() - startTime);
             } else {
-                return new BooleanResponse(false, 0); //L'utente esiste già
+                return new BooleanResponse(false, System.currentTimeMillis() - startTime); //L'utente esiste già
             }
         } else {
-            return new BooleanResponse(false, 0); //Ricevuta stringa vuota
+            return new BooleanResponse(false, System.currentTimeMillis() - startTime); //Ricevuta stringa vuota
         }
     }
 
     //Login utente
 
     @Override
-    public BooleanResponse login(String handle) throws RemoteException {
-        if (!users.stream().map(User::getUserHandle).toList().contains(handle)) {
-            return new BooleanResponse(false, 0);
+    public BooleanResponse login(String userHandle) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
+
+        if (!users.stream().map(User::getUserHandle).toList().contains(userHandle)) {
+            return new BooleanResponse(false, System.currentTimeMillis() - startTime);
         } else {
-            return new BooleanResponse(true, 0); //L'utente esiste e può fare login
+            return new BooleanResponse(true, System.currentTimeMillis() - startTime); //L'utente esiste e può fare login
         }
     }
 
     //Nuovo post
 
     @Override
-    public BooleanResponse newPost(String handle, String message) throws RemoteException {
+    public BooleanResponse newPost(String userHandle, String message) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
+
         Post newPost = new Post.Builder()
                 .withPostUuid(UUID.randomUUID().toString())
                 .withCommentList(new ArrayList<>())
                 .withLikedBy(new ArrayList<>())
                 .withLikesCount(0)
                 .withMessage(message)
-                .withUserHandle(handle)
+                .withUserHandle(userHandle)
                 .withCreatedAt(System.currentTimeMillis())
                 .build();
 
@@ -78,22 +83,27 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         StorageUtils.savePostsToStorage(posts);
 
-        return new BooleanResponse(true, 0);
+        return new BooleanResponse(true, System.currentTimeMillis() - startTime);
     }
 
     //Rimozione post
 
     @Override
-    public BooleanResponse deletePost(String handle, String postUuid) throws RemoteException {
-        Boolean removed = posts.removeIf(element -> element.getUserHandle().equals(handle) && element.getPostUuid().equals(postUuid));
+    public BooleanResponse deletePost(String userHandle, String postUuid) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
+
+        Boolean removed = posts.removeIf(element -> element.getUserHandle().equals(userHandle) && element.getPostUuid().equals(postUuid));
         StorageUtils.savePostsToStorage(posts);
-        return new BooleanResponse(removed, 0);
+        return new BooleanResponse(removed, System.currentTimeMillis() - startTime);
     }
 
     //Like del post
 
     @Override
-    public BooleanResponse likePost(String handle, String postUuid) throws RemoteException {
+    public BooleanResponse likePost(String userHandle, String postUuid) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
 
         boolean updated = false;
 
@@ -102,7 +112,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             if (posts.get(i).getPostUuid().equals(postUuid)) {
 
                 Post postToUpdate = posts.get(i);
-                postToUpdate.addLike(handle);
+                postToUpdate.addLike(userHandle);
                 posts.set(i, postToUpdate);
 
                 updated = true;
@@ -111,13 +121,15 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         StorageUtils.savePostsToStorage(posts);
 
-        return new BooleanResponse(updated, 0);
+        return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
 
     //Seguire un utente
 
     @Override
     public BooleanResponse followUser(String follower, String followed) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
 
         boolean updated = false;
 
@@ -141,7 +153,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
             StorageUtils.saveUsersToStorage(users);
 
-            return new BooleanResponse(updated, 0);
+            return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
         }
     }
 
@@ -149,6 +161,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
     @Override
     public BooleanResponse unFollowUser(String follower, String followed) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
 
         boolean updated = false;
 
@@ -166,7 +180,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         StorageUtils.saveUsersToStorage(users);
 
-        return new BooleanResponse(updated, 0);
+        return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
 
     //Recupera gli ultimi post
@@ -174,15 +188,19 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     @Override
     public PostsListResponse getLatestPosts() throws RemoteException {
 
+        long startTime = System.currentTimeMillis();
+
         //TODO: mettere opzione per giorno, settimana, mese, tutto
 
-        return new PostsListResponse(posts, 0);
+        return new PostsListResponse(posts, System.currentTimeMillis() - startTime);
     }
 
     //Recupera solo i post degli utenti seguiti
 
     @Override
-    public PostsListResponse getFollowedPosts(String handle) throws RemoteException {
+    public PostsListResponse getFollowedPosts(String userHandle) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
 
         //TODO: mettere opzione per giorno, settimana, mese, tutto
 
@@ -190,7 +208,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         //Cerco gli utenti seguiti
 
-        ArrayList<String> followedUsers = (ArrayList<String>) users.stream().filter(element -> element.getUserHandle().equals(handle)).findFirst().orElse(null).getFollowing();
+        ArrayList<String> followedUsers = (ArrayList<String>) users.stream().filter(element -> element.getUserHandle().equals(userHandle)).findFirst().orElse(null).getFollowing();
 
         //Cerco i post scritti dagli utenti seguiti
 
@@ -204,20 +222,25 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 			}
         }
 
-        return new PostsListResponse(followedPosts, 0);
+        return new PostsListResponse(followedPosts, System.currentTimeMillis() - startTime);
     }
 
     //Recupera la lista degli utenti
 
     @Override
-    public UsersListResponse getUsersList() throws RemoteException {
-        return new UsersListResponse(users, 0);
+    public UsersListResponse getUsersList(String userHandle) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
+
+        return new UsersListResponse(users.stream().filter(element -> !element.getUserHandle().equals(userHandle)).toList(), System.currentTimeMillis() - startTime);
     }
 
     //Commenta un post
 
     @Override
-    public BooleanResponse commentPost(String handle, String postUuid, String comment) throws RemoteException {
+    public BooleanResponse commentPost(String userHandle, String postUuid, String comment) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
 
         boolean updated = false;
 
@@ -226,7 +249,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             if (posts.get(i).getPostUuid().equals(postUuid)) {
 
                 Post postToUpdate = posts.get(i);
-                postToUpdate.addComment(handle, comment);
+                postToUpdate.addComment(userHandle, comment);
                 posts.set(i, postToUpdate);
 
                 updated = true;
@@ -235,13 +258,13 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         StorageUtils.savePostsToStorage(posts);
 
-        return new BooleanResponse(updated, 0);
+        return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
 
     //Invia un messaggio diretto ad un utente
 
     @Override
-    public BooleanResponse directMessage(String handle, String message) throws RemoteException {
+    public BooleanResponse directMessage(String userHandle, String message) throws RemoteException {
         return null;
     }
 }

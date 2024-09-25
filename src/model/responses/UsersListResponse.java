@@ -11,11 +11,11 @@ public class UsersListResponse extends ServiceResponse<List<User>> {
         super();
     }
 
-    public UsersListResponse(int errorCode, String errorMessage, int elapsed) {
+    public UsersListResponse(int errorCode, String errorMessage, long elapsed) {
         super(errorCode, errorMessage, elapsed);
     }
 
-    public UsersListResponse(List<User> data, int elapsed) {
+    public UsersListResponse(List<User> data, long elapsed) {
         super(data, elapsed);
     }
 }

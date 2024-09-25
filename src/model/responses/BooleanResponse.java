@@ -6,11 +6,11 @@ public class BooleanResponse extends ServiceResponse<Boolean> {
         super();
     }
 
-    public BooleanResponse(int errorCode, String errorMessage, int elapsed) {
+    public BooleanResponse(int errorCode, String errorMessage, long elapsed) {
         super(errorCode, errorMessage, elapsed);
     }
 
-    public BooleanResponse(Boolean data, int elapsed) {
+    public BooleanResponse(Boolean data, long elapsed) {
         super(data, elapsed);
     }
 }

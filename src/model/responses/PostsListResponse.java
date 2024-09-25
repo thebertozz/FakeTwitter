@@ -10,11 +10,11 @@ public class PostsListResponse extends ServiceResponse<List<Post>> {
         super();
     }
 
-    public PostsListResponse(int errorCode, String errorMessage, int elapsed) {
+    public PostsListResponse(int errorCode, String errorMessage, long elapsed) {
         super(errorCode, errorMessage, elapsed);
     }
 
-    public PostsListResponse(List<Post> data, int elapsed) {
+    public PostsListResponse(List<Post> data, long elapsed) {
         super(data, elapsed);
     }
 }
