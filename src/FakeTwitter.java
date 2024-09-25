@@ -19,8 +19,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
         //TODO: load pre made elements for the home screen
 
         super();
-        users = new ArrayList<>();
-        posts = new ArrayList<>();
+        users = (ArrayList<User>) StorageUtils.loadStoredUsers();
+        posts = (ArrayList<Post>) StorageUtils.loadStoredPosts();
     }
 
     //Registrazione utente
@@ -39,6 +39,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
             if (!users.stream().map(User::getUserHandle).toList().contains(newUser.getUserHandle())) {
                 users.add(newUser);
+                StorageUtils.saveUsersToStorage(users);
                 return new BooleanResponse(true, 0);
             } else {
                 return new BooleanResponse(false, 0); //L'utente esiste già
@@ -75,6 +76,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         posts.add(newPost);
 
+        StorageUtils.savePostsToStorage(posts);
+
         return new BooleanResponse(true, 0);
     }
 
@@ -83,6 +86,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     @Override
     public BooleanResponse deletePost(String handle, String postUuid) throws RemoteException {
         Boolean removed = posts.removeIf(element -> element.getUserHandle().equals(handle) && element.getPostUuid().equals(postUuid));
+        StorageUtils.savePostsToStorage(posts);
         return new BooleanResponse(removed, 0);
     }
 
@@ -104,6 +108,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                 updated = true;
             }
         }
+
+        StorageUtils.savePostsToStorage(posts);
 
         return new BooleanResponse(updated, 0);
     }
@@ -133,6 +139,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                 }
             }
 
+            StorageUtils.saveUsersToStorage(users);
+
             return new BooleanResponse(updated, 0);
         }
     }
@@ -155,6 +163,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                 updated = true;
             }
         }
+
+        StorageUtils.saveUsersToStorage(users);
 
         return new BooleanResponse(updated, 0);
     }
@@ -222,6 +232,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                 updated = true;
             }
         }
+
+        StorageUtils.savePostsToStorage(posts);
 
         return new BooleanResponse(updated, 0);
     }
