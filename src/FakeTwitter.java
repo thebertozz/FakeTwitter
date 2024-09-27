@@ -16,8 +16,8 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
     protected FakeTwitter() throws RemoteException {
         super();
-        users = (ArrayList<User>) StorageUtils.loadStoredUsers();
-        posts = (ArrayList<Post>) StorageUtils.loadStoredPosts();
+        users = (ArrayList<User>) FakeTwitterDAO.loadStoredUsers();
+        posts = (ArrayList<Post>) FakeTwitterDAO.loadStoredPosts();
     }
 
     //Registrazione utente
@@ -38,7 +38,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
             if (!users.stream().map(User::getUserHandle).toList().contains(newUser.getUserHandle())) {
                 users.add(newUser);
-                StorageUtils.saveUsersToStorage(users);
+                FakeTwitterDAO.saveUsersToStorage(users);
                 return new BooleanResponse(true, System.currentTimeMillis() - startTime);
             } else {
                 return new BooleanResponse(false, System.currentTimeMillis() - startTime); //L'utente esiste già
@@ -81,7 +81,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
 
         posts.add(newPost);
 
-        StorageUtils.savePostsToStorage(posts);
+        FakeTwitterDAO.savePostsToStorage(posts);
 
         return new BooleanResponse(true, System.currentTimeMillis() - startTime);
     }
@@ -94,7 +94,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
         long startTime = System.currentTimeMillis();
 
         Boolean removed = posts.removeIf(element -> element.getUserHandle().equals(userHandle) && element.getPostUuid().equals(postUuid));
-        StorageUtils.savePostsToStorage(posts);
+        FakeTwitterDAO.savePostsToStorage(posts);
         return new BooleanResponse(removed, System.currentTimeMillis() - startTime);
     }
 
@@ -119,7 +119,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             }
         }
 
-        StorageUtils.savePostsToStorage(posts);
+        FakeTwitterDAO.savePostsToStorage(posts);
 
         return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
@@ -151,7 +151,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
                 }
             }
 
-            StorageUtils.saveUsersToStorage(users);
+            FakeTwitterDAO.saveUsersToStorage(users);
 
             return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
         }
@@ -178,7 +178,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             }
         }
 
-        StorageUtils.saveUsersToStorage(users);
+        FakeTwitterDAO.saveUsersToStorage(users);
 
         return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
@@ -256,7 +256,7 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
             }
         }
 
-        StorageUtils.savePostsToStorage(posts);
+        FakeTwitterDAO.savePostsToStorage(posts);
 
         return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }

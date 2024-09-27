@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageUtils {
+public class FakeTwitterDAO {
 
 	private static final String usersFile = "users.txt";
 	private static final String postsFile = "posts.txt";
