@@ -21,4 +21,5 @@ public interface FakeTwitterServerInterface extends Remote {
     BooleanResponse commentPost(String userHandle, String postUuid, String comment) throws RemoteException;
     ClientsListResponse getClientsList(String userHandle) throws RemoteException;
     IntegerResponse registerNewClient(String host, String userHandle) throws RemoteException;
+    BooleanResponse unRegisterClient(String userHandle) throws RemoteException;
 }

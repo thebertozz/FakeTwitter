@@ -54,8 +54,14 @@ public class FakeTwitterClientMain {
 		System.out.println("1. Registrati");
 		System.out.println("2. Effettua il login");
 
-		int selection = keyboardInput.nextInt();
-		keyboardInput.nextLine();
+		String stringForSelection = keyboardInput.nextLine();
+
+		while (!Utils.isNumeric(stringForSelection)) {
+			System.out.println("Inserisci un numero");
+			stringForSelection = keyboardInput.nextLine();
+		}
+
+		int selection = Integer.parseInt(stringForSelection);
 
 		switch (selection) {
 			case 1:
@@ -158,8 +164,14 @@ public class FakeTwitterClientMain {
 		System.out.println("4. Mostra la lista degli utenti del servizio");
 		System.out.println("5. Esci");
 
-		int selection = keyboardInput.nextInt();
-		keyboardInput.nextLine(); //per il \n
+		String stringForSelection = keyboardInput.nextLine();
+
+		while (!Utils.isNumeric(stringForSelection)) {
+			System.out.println("Inserisci un numero");
+			stringForSelection = keyboardInput.nextLine();
+		}
+
+		int selection = Integer.parseInt(stringForSelection);
 
 		switch (selection) {
 			case 1:
@@ -196,7 +208,13 @@ public class FakeTwitterClientMain {
 				showClientsList(userHandle);
 				break;
 			case 5:
-				System.out.println("Grazie per aver utilizzato FakeTwitter!");
+				try {
+					fakeTwitterServerInterface.unRegisterClient(userHandle);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Eccezione nella deregistrazione del client");
+				}
+				System.out.println("Il client è stato rimosso dal pool degli utenti attivi. Grazie per aver utilizzato FakeTwitter!");
 				System.exit(0);
 			default:
 				System.out.println("Puoi scegliere tra le opzioni 1,2,3,4 o 5.");
@@ -264,16 +282,28 @@ public class FakeTwitterClientMain {
 			System.out.println("5. Elimina un tuo post");
 			System.out.println("6. Torna indietro");
 
-			int selection = keyboardInput.nextInt();
-			keyboardInput.nextLine(); //per il \n
+			String stringForSelection = keyboardInput.nextLine();
+
+			while (!Utils.isNumeric(stringForSelection)) {
+				System.out.println("Inserisci un numero");
+				stringForSelection = keyboardInput.nextLine();
+			}
+
+			int selection = Integer.parseInt(stringForSelection);
 
 			switch (selection) {
 				case 1: //Commento
 
 					System.out.println("--- Scegli il numero del post che vuoi commentare ---");
 
-					int numberForComment = keyboardInput.nextInt();
-					keyboardInput.nextLine(); //per il \n
+					String stringForPostSelection = keyboardInput.nextLine();
+
+					while (!Utils.isNumeric(stringForPostSelection)) {
+						System.out.println("Inserisci un numero");
+						stringForPostSelection = keyboardInput.nextLine();
+					}
+
+					int numberForComment = Integer.parseInt(stringForPostSelection);
 
 					if (numberForComment <= posts.getData().size()) {
 
@@ -309,8 +339,14 @@ public class FakeTwitterClientMain {
 
 					System.out.println("--- Scegli il numero del post al quale vuoi mettere like ---");
 
-					int numberForLike = keyboardInput.nextInt();
-					keyboardInput.nextLine(); //per il \n
+					String stringForLikeSelection = keyboardInput.nextLine();
+
+					while (!Utils.isNumeric(stringForLikeSelection)) {
+						System.out.println("Inserisci un numero");
+						stringForLikeSelection = keyboardInput.nextLine();
+					}
+
+					int numberForLike = Integer.parseInt(stringForLikeSelection);
 
                     if (numberForLike <= posts.getData().size()) {
 
@@ -340,10 +376,16 @@ public class FakeTwitterClientMain {
 
 					System.out.println("--- Scegli il numero del post relativo all'utente che vuoi seguire ---");
 
-					int numberForFollow = keyboardInput.nextInt();
-					keyboardInput.nextLine(); //per il \n
+					String stringForFollowSelection = keyboardInput.nextLine();
 
-                    if (numberForFollow <= posts.getData().size()) {
+					while (!Utils.isNumeric(stringForFollowSelection)) {
+						System.out.println("Inserisci un numero");
+						stringForFollowSelection = keyboardInput.nextLine();
+					}
+
+					int numberForFollow = Integer.parseInt(stringForFollowSelection);
+
+					if (numberForFollow <= posts.getData().size()) {
 
                         try {
 
@@ -372,8 +414,14 @@ public class FakeTwitterClientMain {
 
 					System.out.println("--- Scegli il numero del post relativo all'utente che vuoi smettere di seguire ---");
 
-					int numberForUnFollow = keyboardInput.nextInt();
-					keyboardInput.nextLine(); //per il \n
+					String stringForUnFollowSelection = keyboardInput.nextLine();
+
+					while (!Utils.isNumeric(stringForUnFollowSelection)) {
+						System.out.println("Inserisci un numero");
+						stringForUnFollowSelection = keyboardInput.nextLine();
+					}
+
+					int numberForUnFollow = Integer.parseInt(stringForUnFollowSelection);
 
                     if (numberForUnFollow <= posts.getData().size()) {
 
@@ -402,8 +450,14 @@ public class FakeTwitterClientMain {
 				case 5: //Elimina un post personale
 					System.out.println("--- Scegli il numero del post che vuoi eliminare (se pubblicato da te) ---");
 
-					int numberForDeletion = keyboardInput.nextInt();
-					keyboardInput.nextLine(); //per il \n
+					String stringForPostDeletion = keyboardInput.nextLine();
+
+					while (!Utils.isNumeric(stringForPostDeletion)) {
+						System.out.println("Inserisci un numero");
+						stringForPostDeletion = keyboardInput.nextLine();
+					}
+
+					int numberForDeletion = Integer.parseInt(stringForPostDeletion);
 
                     if (numberForDeletion <= posts.getData().size()) {
 
@@ -475,8 +529,14 @@ public class FakeTwitterClientMain {
 				System.out.println("1. Chatta con un utente");
 				System.out.println("2. Torna indietro");
 
-				int selection = keyboardInput.nextInt();
-				keyboardInput.nextLine(); //per il \n
+				String stringForSelection = keyboardInput.nextLine();
+
+				while (!Utils.isNumeric(stringForSelection)) {
+					System.out.println("Inserisci un numero");
+					stringForSelection = keyboardInput.nextLine();
+				}
+
+				int selection = Integer.parseInt(stringForSelection);
 
 				switch (selection) {
 					case 1:
@@ -485,10 +545,16 @@ public class FakeTwitterClientMain {
 
 						System.out.println("--- Scegli il numero dell'utente al quale vuoi inviare il messaggio ---");
 
-						int numberForMessage = keyboardInput.nextInt();
-						keyboardInput.nextLine(); //per il \n
+						String stringForMessage = keyboardInput.nextLine();
 
-						if (Utils.isNumber(String.valueOf(numberForMessage)) && numberForMessage <= clients.getData().size()) {
+						while (!Utils.isNumeric(stringForMessage)) {
+							System.out.println("Inserisci un numero");
+							stringForMessage = keyboardInput.nextLine();
+						}
+
+						int numberForMessage = Integer.parseInt(stringForMessage);
+
+						if (numberForMessage <= clients.getData().size()) {
 
 							String message = "";
 
@@ -559,7 +625,7 @@ public class FakeTwitterClientMain {
 
 				clientRegistry.bind(Constants.clientsRegistryName, fakeTwitterClient);
 
-				System.out.println("Il client ha inizializzato il server per la messaggistica sulla porta " + clientPort.getData());
+				System.out.println("Registrazione per la messaggistica completata. Porta: " + clientPort.getData());
 
 				System.out.println();
 			}

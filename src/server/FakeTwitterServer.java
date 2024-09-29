@@ -198,8 +198,6 @@ public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitte
 
         long startTime = System.currentTimeMillis();
 
-        //TODO: mettere opzione per giorno, settimana, mese, tutto
-
         return new PostsListResponse(posts, System.currentTimeMillis() - startTime);
     }
 
@@ -209,8 +207,6 @@ public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitte
     public PostsListResponse getFollowedPosts(String userHandle) throws RemoteException {
 
         long startTime = System.currentTimeMillis();
-
-        //TODO: mettere opzione per giorno, settimana, mese, tutto
 
         ArrayList<Post> followedPosts = new ArrayList<>();
 
@@ -295,5 +291,14 @@ public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitte
         } else {
             return new IntegerResponse(0, System.currentTimeMillis() - startTime);
         }
+    }
+
+    @Override
+    public BooleanResponse unRegisterClient(String userHandle) throws RemoteException {
+        long startTime = System.currentTimeMillis();
+
+        Boolean removed = clients.removeIf(element -> element.getUserHandle().equals(userHandle));
+
+        return new BooleanResponse(removed, System.currentTimeMillis() - startTime);
     }
 }
