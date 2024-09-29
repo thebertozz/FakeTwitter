@@ -1,23 +1,31 @@
+package server;
+
+import model.Client;
 import model.Post;
 import model.User;
 import model.responses.BooleanResponse;
+import model.responses.IntegerResponse;
 import model.responses.PostsListResponse;
-import model.responses.UsersListResponse;
+import model.responses.ClientsListResponse;
+import utils.Constants;
+import utils.FakeTwitterDAO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInterface {
+public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitterServerInterface {
 
     private final ArrayList<User> users;
     private final ArrayList<Post> posts;
+    private final ArrayList<Client> clients;
 
-    protected FakeTwitter() throws RemoteException {
+    protected FakeTwitterServer() throws RemoteException {
         super();
         users = (ArrayList<User>) FakeTwitterDAO.loadStoredUsers();
         posts = (ArrayList<Post>) FakeTwitterDAO.loadStoredPosts();
+        clients = new ArrayList<>();
     }
 
     //Registrazione utente
@@ -228,11 +236,11 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
     //Recupera la lista degli utenti
 
     @Override
-    public UsersListResponse getUsersList(String userHandle) throws RemoteException {
+    public ClientsListResponse getClientsList(String userHandle) throws RemoteException {
 
         long startTime = System.currentTimeMillis();
 
-        return new UsersListResponse(users.stream().filter(element -> !element.getUserHandle().equals(userHandle)).toList(), System.currentTimeMillis() - startTime);
+        return new ClientsListResponse(clients, System.currentTimeMillis() - startTime);
     }
 
     //Commenta un post
@@ -261,10 +269,29 @@ public class FakeTwitter extends UnicastRemoteObject implements FakeTwitterInter
         return new BooleanResponse(updated, System.currentTimeMillis() - startTime);
     }
 
-    //Invia un messaggio diretto ad un utente
+    //Registra un nuovo client
 
     @Override
-    public BooleanResponse directMessage(String userHandle, String message) throws RemoteException {
-        return null;
+    public IntegerResponse registerNewClient(String host, String userHandle) throws RemoteException {
+
+        long startTime = System.currentTimeMillis();
+
+        if (!host.isBlank()) {
+
+            int clientPort = Constants.baseServicePort + clients.size() + 1; //Ogni client avrà la sua porta calcolata in questo modo
+
+            Client newClient = new Client.Builder()
+                    .withHost(host)
+                    .withPort(clientPort)
+                    .withUserHandle(userHandle)
+                    .build();
+
+            clients.add(newClient);
+
+            return new IntegerResponse(clientPort, System.currentTimeMillis() - startTime);
+
+        } else {
+            return new IntegerResponse(0, System.currentTimeMillis() - startTime);
+        }
     }
 }

@@ -1,27 +1,36 @@
+package client;
+
+import model.Client;
 import model.Comment;
 import model.Post;
-import model.User;
 import model.responses.BooleanResponse;
+import model.responses.IntegerResponse;
 import model.responses.PostsListResponse;
-import model.responses.UsersListResponse;
+import model.responses.ClientsListResponse;
+import server.FakeTwitterServerInterface;
+import utils.Constants;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-public class FakeTwitterClient {
+public class FakeTwitterClientMain {
 
-	public static FakeTwitterInterface fakeTwitterInterface;
+	public static FakeTwitterServerInterface fakeTwitterInterface;
 
 	static Scanner keyboardInput = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		try {
-			Registry registry = LocateRegistry.getRegistry(Constants.registryAddress, Constants.servicePort);
 
-			fakeTwitterInterface = (FakeTwitterInterface) registry.lookup(Constants.serviceRegistryName);
+			//Registry del server
+
+			Registry registry = LocateRegistry.getRegistry(Constants.registryHost, Constants.baseServicePort);
+
+			fakeTwitterInterface = (FakeTwitterServerInterface) registry.lookup(Constants.serviceRegistryName);
 
 			showRootMainMenu();
 
@@ -76,6 +85,8 @@ public class FakeTwitterClient {
 				System.out.println("Welcome back, " + userHandle + "!");
 				System.out.println();
 
+				fakeTwitterInterface
+
 				showRegisteredUserMenu(userHandle);
 
 			} else {
@@ -129,6 +140,10 @@ public class FakeTwitterClient {
 
 	public static void showRegisteredUserMenu(String userHandle) {
 
+		//Inizializzazione della messaggistica tra client
+
+		clientMessagingInit();
+
 		System.out.println("--- Cosa vuoi fare oggi, " + "@" + userHandle + "? ---");
 		System.out.println();
 		System.out.println("1. Nuovo post");
@@ -172,7 +187,7 @@ public class FakeTwitterClient {
 				showPostsList(userHandle, true);
 				break;
 			case 4:
-				showUsersList(userHandle);
+				showClientsList(userHandle);
 				break;
 			case 5:
 				System.out.println("Grazie per aver utilizzato FakeTwitter!");
@@ -417,20 +432,20 @@ public class FakeTwitterClient {
 		}
 	}
 
-	//UI per mostrare la lista degli utenti per i messaggi diretti
+	//UI per mostrare la lista dei client per i messaggi diretti
 
-	public static void showUsersList(String userHandle) {
+	public static void showClientsList(String userHandle) {
 
-		UsersListResponse users = null;
+		ClientsListResponse clients = null;
 
 		System.out.println("--- Lista degli utenti registrati ---");
 		System.out.println();
 
 		try {
 
-			users = fakeTwitterInterface.getUsersList(userHandle);
+			clients = fakeTwitterInterface.getClientsList(userHandle);
 
-			if (users.getData().isEmpty()) {
+			if (clients.getData().isEmpty()) {
 
 				System.out.println("La lista degli utenti è ancora vuota.");
 				System.out.println();
@@ -439,11 +454,11 @@ public class FakeTwitterClient {
 
 			} else {
 
-				for (int i = 0; i < users.getData().size(); i++) {
+				for (int i = 0; i < clients.getData().size(); i++) {
 
-					User currentUser = users.getData().get(i);
+					Client currentClient = clients.getData().get(i);
 
-					System.out.println(i + 1 + " - " + "@" + currentUser.getUserHandle());
+					System.out.println(i + 1 + " - " + "@" + currentClient.getUserHandle());
 				}
 
 				//Opzioni per i messaggi agli utenti
@@ -470,6 +485,32 @@ public class FakeTwitterClient {
 		} catch (RemoteException e) {
 
 			System.out.println("Eccezione nel recupero degli utenti: " + e.getMessage());
+		}
+	}
+
+	public static void clientMessagingInit(String userHandle) {
+
+		try {
+
+			//Recupero della propria porta per la messaggistica diretta
+
+			IntegerResponse clientPort = fakeTwitterInterface.registerNewClient(Constants.registryHost, userHandle);
+
+			if (clientPort.getData() != 0) {
+
+				FakeTwitterClient fakeTwitterClient = new FakeTwitterClient();
+
+				Registry clientRegistry = LocateRegistry.createRegistry(clientPort.getData());
+
+				clientRegistry.bind(Constants.clientsRegistryName, fakeTwitterClient);
+
+				System.out.println("Il client ha inizializzato il server per la messaggistica sulla porta " + clientPort.getData());
+			}
+
+		} catch (RemoteException | AlreadyBoundException e) {
+
+			e.printStackTrace();
+			System.out.println("Eccezione nella registrazione del client per la messaggistica: " + e.getMessage());
 		}
 	}
 }

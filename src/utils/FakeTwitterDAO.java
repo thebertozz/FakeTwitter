@@ -1,3 +1,5 @@
+package utils;
+
 import model.Post;
 import model.User;
 

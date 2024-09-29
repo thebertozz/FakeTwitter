@@ -12,8 +12,16 @@
   <component name="ChangeListManager">
     <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FakeTwitter - FB.docx" beforeDir="false" afterPath="$PROJECT_DIR$/FakeTwitter - FB.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$keTwitter - FB.docx" beforeDir="false" afterPath="$PROJECT_DIR$/~$keTwitter - FB.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FakeTwitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FakeTwitterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/FakeTwitterDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FakeTwitterInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FakeTwitterServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/responses/UsersListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/responses/ClientsListResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$keTwitter - FB.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,19 +73,20 @@
       <recent name="model" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
       <recent name="model.responses" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FakeTwitterClient">
-    <configuration name="FakeTwitterClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FakeTwitterClient" />
+  <component name="RunManager" selected="Application.FakeTwitterClientMain">
+    <configuration name="FakeTwitterClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.FakeTwitterClientMain" />
       <module name="FakeTwitter" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FakeTwitterServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FakeTwitterServer" />
+    <configuration name="FakeTwitterServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.FakeTwitterServerMain" />
       <module name="FakeTwitter" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -85,8 +94,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FakeTwitterClient" />
-        <item itemvalue="Application.FakeTwitterServer" />
+        <item itemvalue="Application.FakeTwitterClientMain" />
+        <item itemvalue="Application.FakeTwitterServerMain" />
       </list>
     </recent_temporary>
   </component>

@@ -1,11 +1,14 @@
+package server;
+
 import model.responses.BooleanResponse;
+import model.responses.IntegerResponse;
 import model.responses.PostsListResponse;
-import model.responses.UsersListResponse;
+import model.responses.ClientsListResponse;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface FakeTwitterInterface extends Remote {
+public interface FakeTwitterServerInterface extends Remote {
     BooleanResponse registerUser(String userHandle) throws RemoteException;
     BooleanResponse login(String userHandle) throws RemoteException;
     BooleanResponse newPost(String userHandle, String post) throws RemoteException;
@@ -16,6 +19,6 @@ public interface FakeTwitterInterface extends Remote {
     PostsListResponse getLatestPosts() throws RemoteException;
     PostsListResponse getFollowedPosts(String userHandle) throws RemoteException;
     BooleanResponse commentPost(String userHandle, String postUuid, String comment) throws RemoteException;
-    UsersListResponse getUsersList(String userHandle) throws RemoteException;
-    BooleanResponse directMessage(String userHandle, String message) throws RemoteException;
+    ClientsListResponse getClientsList(String userHandle) throws RemoteException;
+    IntegerResponse registerNewClient(String host, String userHandle) throws RemoteException;
 }

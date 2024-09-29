@@ -1,4 +1,4 @@
-# FakeTwitter
+# server.FakeTwitterServer
 
 A Twitter style social network implementation, written with Java RMI. 
 
