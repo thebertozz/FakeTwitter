@@ -70,4 +70,13 @@ public class Client implements Serializable {
             return client;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "host='" + host + '\'' +
+                ", port=" + port +
+                ", userHandle='" + userHandle + '\'' +
+                '}';
+    }
 }

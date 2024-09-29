@@ -9,6 +9,7 @@ import model.responses.PostsListResponse;
 import model.responses.ClientsListResponse;
 import server.FakeTwitterServerInterface;
 import utils.Constants;
+import utils.Utils;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -87,6 +88,10 @@ public class FakeTwitterClientMain {
 				System.out.println("Welcome back, " + userHandle + "!");
 				System.out.println();
 
+				//Inizializzazione della messaggistica tra client una volta loggati
+
+				clientMessagingInit(userHandle);
+
 				showRegisteredUserMenu(userHandle);
 
 			} else {
@@ -122,11 +127,16 @@ public class FakeTwitterClientMain {
 				System.out.println("Utente " + userHandle + " registrato!");
 				System.out.println();
 
+				//Inizializzazione della messaggistica tra client una volta loggati
+
+				clientMessagingInit(userHandle);
+
 				showRegisteredUserMenu(userHandle);
 
 			} else {
 				System.out.println();
 				System.out.println("L'utente " + userHandle + " esiste già, effettua il login");
+				System.out.println();
 				showRootMainMenu();
 			}
 
@@ -139,10 +149,6 @@ public class FakeTwitterClientMain {
 	//UI per l'utente registrato
 
 	public static void showRegisteredUserMenu(String userHandle) {
-
-		//Inizializzazione della messaggistica tra client una volta loggati
-
-		clientMessagingInit(userHandle);
 
 		System.out.println("--- Cosa vuoi fare oggi, " + "@" + userHandle + "? ---");
 		System.out.println();
@@ -482,27 +488,41 @@ public class FakeTwitterClientMain {
 						int numberForMessage = keyboardInput.nextInt();
 						keyboardInput.nextLine(); //per il \n
 
-						if (numberForMessage <= clients.getData().size()) {
+						if (Utils.isNumber(String.valueOf(numberForMessage)) && numberForMessage <= clients.getData().size()) {
 
-							System.out.println("--- Inserisci il messaggio ---");
-							String message = keyboardInput.nextLine();
+							String message = "";
 
-							try {
+							//Loop per la messaggistica
 
-								BooleanResponse response = fakeTwitterClient.sendMessage(userHandle, message);
+							while (!message.equals("Q")) {
 
-								if (response.getData()) {
+								try {
+
+									System.out.println("--- Messaggio (Q per uscire) ---");
+
+									message = keyboardInput.nextLine();
+
+									BooleanResponse response = fakeTwitterClient.peerToPeerInit(userHandle, clients.getData().get(numberForMessage - 1).getPort(), message);
+
+									if (response.getData()) {
+										System.out.println();
+										System.out.println("Messaggio inviato!");
+										System.out.println();
+
+									} else {
+										System.out.println();
+										System.out.println("Errore nell'invio del messaggio");
+									}
+
+								} catch (Exception e) {
 									System.out.println();
-									System.out.println("Messaggio inviato!");
-								} else {
-									System.out.println();
-									System.out.println("Errore nell'invio del messaggio");
+									System.out.println("Eccezione nell'invio del messaggio: " + e.getMessage());
 								}
 
-							} catch (Exception e) {
-								System.out.println();
-								System.out.println("Eccezione nell'invio del messaggio: " + e.getMessage());
-							}
+							} //Chiusura del while
+
+							//showRegisteredUserMenu(userHandle);
+
 						} else {
 							System.out.println();
 							System.out.println("Seleziona un utente!");
@@ -540,6 +560,8 @@ public class FakeTwitterClientMain {
 				clientRegistry.bind(Constants.clientsRegistryName, fakeTwitterClient);
 
 				System.out.println("Il client ha inizializzato il server per la messaggistica sulla porta " + clientPort.getData());
+
+				System.out.println();
 			}
 
 		} catch (RemoteException | AlreadyBoundException e) {

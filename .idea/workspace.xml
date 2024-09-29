@@ -12,11 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/posts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/FakeTwitterServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/users.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,22 +48,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.FakeTwitterClient.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.FakeTwitterServer.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.FakeTwitterClient.executor": "Debug",
+    "Application.FakeTwitterClientMain.executor": "Debug",
+    "Application.FakeTwitterServer.executor": "Debug",
+    "Application.FakeTwitterServerMain.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateBuilderDialog.RecentsKey">
       <recent name="model" />
@@ -73,7 +76,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.FakeTwitterClientMain">
-    <configuration name="FakeTwitterClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="FakeTwitterClientMain" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.FakeTwitterClientMain" />
       <module name="FakeTwitter" />
       <method v="2">
@@ -87,6 +90,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.FakeTwitterClientMain" />
+      <item itemvalue="Application.FakeTwitterServerMain" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FakeTwitterClientMain" />

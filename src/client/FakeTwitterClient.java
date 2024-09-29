@@ -26,7 +26,7 @@ public class FakeTwitterClient extends UnicastRemoteObject implements FakeTwitte
 
             Registry registry = LocateRegistry.getRegistry(Constants.defaultHost, clientPort);
 
-            fakeTwitterClientInterface = (FakeTwitterClientInterface) registry.lookup(Constants.serviceRegistryName);
+            fakeTwitterClientInterface = (FakeTwitterClientInterface) registry.lookup(Constants.clientsRegistryName);
 
             fakeTwitterClientInterface.sendMessage(userHandle, message);
 
@@ -45,7 +45,9 @@ public class FakeTwitterClient extends UnicastRemoteObject implements FakeTwitte
 
         long startTime = System.currentTimeMillis();
 
+        //System.out.println();
         System.out.println("Messaggio ricevuto da @" + userHandle + ": " + message);
+        //System.out.println();
 
         return new BooleanResponse(true, System.currentTimeMillis() - startTime);
     }

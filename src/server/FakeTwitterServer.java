@@ -288,6 +288,8 @@ public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitte
 
             clients.add(newClient);
 
+            System.out.println("Registrato client con info: " + newClient.toString());
+
             return new IntegerResponse(clientPort, System.currentTimeMillis() - startTime);
 
         } else {
