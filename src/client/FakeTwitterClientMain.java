@@ -18,7 +18,9 @@ import java.util.Scanner;
 
 public class FakeTwitterClientMain {
 
-	public static FakeTwitterServerInterface fakeTwitterInterface;
+	public static FakeTwitterServerInterface fakeTwitterServerInterface;
+
+	public static FakeTwitterClient fakeTwitterClient;
 
 	static Scanner keyboardInput = new Scanner(System.in);
 
@@ -28,9 +30,9 @@ public class FakeTwitterClientMain {
 
 			//Registry del server
 
-			Registry registry = LocateRegistry.getRegistry(Constants.registryHost, Constants.baseServicePort);
+			Registry registry = LocateRegistry.getRegistry(Constants.defaultHost, Constants.baseServicePort);
 
-			fakeTwitterInterface = (FakeTwitterServerInterface) registry.lookup(Constants.serviceRegistryName);
+			fakeTwitterServerInterface = (FakeTwitterServerInterface) registry.lookup(Constants.serviceRegistryName);
 
 			showRootMainMenu();
 
@@ -77,15 +79,13 @@ public class FakeTwitterClientMain {
 
 		try {
 
-			BooleanResponse response = fakeTwitterInterface.login(userHandle);
+			BooleanResponse response = fakeTwitterServerInterface.login(userHandle);
 
 			if (response.getData()) {
 
 				System.out.println();
 				System.out.println("Welcome back, " + userHandle + "!");
 				System.out.println();
-
-				fakeTwitterInterface
 
 				showRegisteredUserMenu(userHandle);
 
@@ -114,7 +114,7 @@ public class FakeTwitterClientMain {
 
 		try {
 
-			BooleanResponse response = fakeTwitterInterface.registerUser(userHandle);
+			BooleanResponse response = fakeTwitterServerInterface.registerUser(userHandle);
 
 			if (response.getData()) {
 
@@ -140,9 +140,9 @@ public class FakeTwitterClientMain {
 
 	public static void showRegisteredUserMenu(String userHandle) {
 
-		//Inizializzazione della messaggistica tra client
+		//Inizializzazione della messaggistica tra client una volta loggati
 
-		clientMessagingInit();
+		clientMessagingInit(userHandle);
 
 		System.out.println("--- Cosa vuoi fare oggi, " + "@" + userHandle + "? ---");
 		System.out.println();
@@ -163,7 +163,7 @@ public class FakeTwitterClientMain {
 
 				try {
 
-					BooleanResponse response = fakeTwitterInterface.newPost(userHandle, post);
+					BooleanResponse response = fakeTwitterServerInterface.newPost(userHandle, post);
 					if (response.isSuccess()) {
 						System.out.println();
 						System.out.println("Post inserito!");
@@ -209,7 +209,7 @@ public class FakeTwitterClientMain {
 
 		try {
 
-			posts = onlyFollowedUsers ? fakeTwitterInterface.getFollowedPosts(userHandle) : fakeTwitterInterface.getLatestPosts();
+			posts = onlyFollowedUsers ? fakeTwitterServerInterface.getFollowedPosts(userHandle) : fakeTwitterServerInterface.getLatestPosts();
 
 			for (int i = 0; i < posts.getData().size(); i++) {
 
@@ -276,7 +276,7 @@ public class FakeTwitterClientMain {
 
 						try {
 
-							BooleanResponse response = fakeTwitterInterface.commentPost(userHandle, posts.getData().get(numberForComment - 1).getPostUuid(), message);
+							BooleanResponse response = fakeTwitterServerInterface.commentPost(userHandle, posts.getData().get(numberForComment - 1).getPostUuid(), message);
 
 							if (response.getData()) {
 								System.out.println();
@@ -310,7 +310,7 @@ public class FakeTwitterClientMain {
 
                         try {
 
-                            BooleanResponse response = fakeTwitterInterface.likePost(userHandle, posts.getData().get(numberForLike - 1).getPostUuid());
+                            BooleanResponse response = fakeTwitterServerInterface.likePost(userHandle, posts.getData().get(numberForLike - 1).getPostUuid());
 
                             if (response.getData()) {
                                 System.out.println("Like aggiunto!");
@@ -341,7 +341,7 @@ public class FakeTwitterClientMain {
 
                         try {
 
-                            BooleanResponse response = fakeTwitterInterface.followUser(userHandle, posts.getData().get(numberForFollow - 1).getUserHandle());
+                            BooleanResponse response = fakeTwitterServerInterface.followUser(userHandle, posts.getData().get(numberForFollow - 1).getUserHandle());
 
                             if (response.getData()) {
                                 System.out.println("Follow aggiunto!");
@@ -373,7 +373,7 @@ public class FakeTwitterClientMain {
 
                         try {
 
-                            BooleanResponse response = fakeTwitterInterface.unFollowUser(userHandle, posts.getData().get(numberForUnFollow - 1).getUserHandle());
+                            BooleanResponse response = fakeTwitterServerInterface.unFollowUser(userHandle, posts.getData().get(numberForUnFollow - 1).getUserHandle());
 
                             if (response.getData()) {
                                 System.out.println("Follow rimosso!");
@@ -403,7 +403,7 @@ public class FakeTwitterClientMain {
 
                         try {
 
-                            BooleanResponse response = fakeTwitterInterface.deletePost(userHandle, posts.getData().get(numberForDeletion - 1).getPostUuid());
+                            BooleanResponse response = fakeTwitterServerInterface.deletePost(userHandle, posts.getData().get(numberForDeletion - 1).getPostUuid());
 
                             if (response.getData()) {
                                 System.out.println("Post rimosso!");
@@ -443,7 +443,7 @@ public class FakeTwitterClientMain {
 
 		try {
 
-			clients = fakeTwitterInterface.getClientsList(userHandle);
+			clients = fakeTwitterServerInterface.getClientsList(userHandle);
 
 			if (clients.getData().isEmpty()) {
 
@@ -474,7 +474,42 @@ public class FakeTwitterClientMain {
 
 				switch (selection) {
 					case 1:
-						//TODO
+
+						//Selezione utente
+
+						System.out.println("--- Scegli il numero dell'utente al quale vuoi inviare il messaggio ---");
+
+						int numberForMessage = keyboardInput.nextInt();
+						keyboardInput.nextLine(); //per il \n
+
+						if (numberForMessage <= clients.getData().size()) {
+
+							System.out.println("--- Inserisci il messaggio ---");
+							String message = keyboardInput.nextLine();
+
+							try {
+
+								BooleanResponse response = fakeTwitterClient.sendMessage(userHandle, message);
+
+								if (response.getData()) {
+									System.out.println();
+									System.out.println("Messaggio inviato!");
+								} else {
+									System.out.println();
+									System.out.println("Errore nell'invio del messaggio");
+								}
+
+							} catch (Exception e) {
+								System.out.println();
+								System.out.println("Eccezione nell'invio del messaggio: " + e.getMessage());
+							}
+						} else {
+							System.out.println();
+							System.out.println("Seleziona un utente!");
+						}
+
+						showRegisteredUserMenu(userHandle);
+
 						break;
 					case 2:
 						showRegisteredUserMenu(userHandle);
@@ -492,13 +527,13 @@ public class FakeTwitterClientMain {
 
 		try {
 
-			//Recupero della propria porta per la messaggistica diretta
+			//Recupero della propria porta e setup per la messaggistica diretta
 
-			IntegerResponse clientPort = fakeTwitterInterface.registerNewClient(Constants.registryHost, userHandle);
+			IntegerResponse clientPort = fakeTwitterServerInterface.registerNewClient(Constants.defaultHost, userHandle);
 
 			if (clientPort.getData() != 0) {
 
-				FakeTwitterClient fakeTwitterClient = new FakeTwitterClient();
+				fakeTwitterClient = new FakeTwitterClient();
 
 				Registry clientRegistry = LocateRegistry.createRegistry(clientPort.getData());
 

@@ -12,16 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FakeTwitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FakeTwitterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/FakeTwitterDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FakeTwitterInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FakeTwitterServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/responses/UsersListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/responses/ClientsListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$keTwitter - FB.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/FakeTwitterClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/FakeTwitterServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

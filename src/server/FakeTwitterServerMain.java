@@ -1,5 +1,7 @@
 package server;
 
+import utils.Constants;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
