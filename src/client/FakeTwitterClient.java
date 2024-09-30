@@ -16,7 +16,7 @@ public class FakeTwitterClient extends UnicastRemoteObject implements FakeTwitte
     }
 
     @Override
-    public BooleanResponse peerToPeerInit(String userHandle, int clientPort, String message) throws RemoteException {
+    public BooleanResponse peerToPeer(String userHandle, int clientPort, String message) throws RemoteException {
 
         long startTime = System.currentTimeMillis();
 
@@ -45,7 +45,7 @@ public class FakeTwitterClient extends UnicastRemoteObject implements FakeTwitte
 
         long startTime = System.currentTimeMillis();
 
-        //System.out.println();
+        System.out.println();
         System.out.println("Messaggio ricevuto da @" + userHandle + ": " + message);
         //System.out.println();
 

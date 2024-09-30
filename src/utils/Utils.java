@@ -14,7 +14,7 @@ public class Utils {
         }
     }
 
-    static String formatDate(long dateInMillis) {
+    public static String formatDate(long dateInMillis) {
         Date date = new Date(dateInMillis);
         return DateFormat.getDateInstance().format(date);
     }

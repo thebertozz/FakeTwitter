@@ -236,7 +236,7 @@ public class FakeTwitterServer extends UnicastRemoteObject implements FakeTwitte
 
         long startTime = System.currentTimeMillis();
 
-        return new ClientsListResponse(clients, System.currentTimeMillis() - startTime);
+        return new ClientsListResponse(clients.stream().filter(element -> !element.getUserHandle().equals(userHandle)).toList(), System.currentTimeMillis() - startTime);
     }
 
     //Commenta un post

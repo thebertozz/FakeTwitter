@@ -242,6 +242,7 @@ public class FakeTwitterClientMain {
 				System.out.println(i + 1 + " - " + "Utente: @" + currentPost.getUserHandle());
 				System.out.println("\tMessaggio: " + posts.getData().get(i).getMessage());
 				System.out.println("\tLike: " + currentPost.getLikesCount());
+				System.out.println("\tData: " + Utils.formatDate(currentPost.getCreatedAt()));
 
 				if (!currentPost.getCommentList().isEmpty()) {
 
@@ -568,16 +569,19 @@ public class FakeTwitterClientMain {
 
 									message = keyboardInput.nextLine();
 
-									BooleanResponse response = fakeTwitterClient.peerToPeerInit(userHandle, clients.getData().get(numberForMessage - 1).getPort(), message);
+									if (!message.equals("Q")) {
 
-									if (response.getData()) {
-										System.out.println();
-										System.out.println("Messaggio inviato!");
-										System.out.println();
+										BooleanResponse response = fakeTwitterClient.peerToPeer(userHandle, clients.getData().get(numberForMessage - 1).getPort(), message);
 
-									} else {
-										System.out.println();
-										System.out.println("Errore nell'invio del messaggio");
+										if (response.getData()) {
+											System.out.println();
+											System.out.println("Messaggio inviato!");
+											System.out.println();
+
+										} else {
+											System.out.println();
+											System.out.println("Errore nell'invio del messaggio");
+										}
 									}
 
 								} catch (Exception e) {
