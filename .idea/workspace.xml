@@ -13,11 +13,14 @@
     <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/posts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/posts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/users.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

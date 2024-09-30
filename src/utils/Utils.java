@@ -16,6 +16,6 @@ public class Utils {
 
     public static String formatDate(long dateInMillis) {
         Date date = new Date(dateInMillis);
-        return DateFormat.getDateInstance().format(date);
+        return DateFormat.getDateTimeInstance().format(date);
     }
 }
