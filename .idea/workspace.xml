@@ -10,17 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.pages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/posts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/posts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/users.txt" afterDir="false" />
-    </list>
+    <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,30 +44,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.FakeTwitterClient.executor": "Debug",
-    "Application.FakeTwitterClientMain.executor": "Run",
-    "Application.FakeTwitterServer.executor": "Debug",
-    "Application.FakeTwitterServerMain.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.FakeTwitterClient.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.FakeTwitterClientMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FakeTwitterServer.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.FakeTwitterServerMain.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateBuilderDialog.RecentsKey">
       <recent name="model" />
