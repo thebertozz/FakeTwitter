@@ -38,8 +38,8 @@ public class FakeTwitterClientMain {
 			showRootMainMenu();
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Errore nell'inizializzazione del servizio");
+
+			System.out.println("Errore nell'inizializzazione del servizio. Verifica che il server sia operativo.");
 		}
 	}
 
@@ -133,7 +133,7 @@ public class FakeTwitterClientMain {
 				System.out.println("Utente " + userHandle + " registrato!");
 				System.out.println();
 
-				//Inizializzazione della messaggistica tra client una volta loggati
+				//Inizializzazione della messaggistica tra client una volta registrati
 
 				clientMessagingInit(userHandle);
 

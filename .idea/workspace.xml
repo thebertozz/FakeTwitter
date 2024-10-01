@@ -13,6 +13,9 @@
     <list default="true" id="419f5551-18e7-4233-a85c-98c4bd72fe37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/FakeTwitter - FB.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/client/FakeTwitterClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Università/FakeTwitter/src/server/FakeTwitterServerMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
